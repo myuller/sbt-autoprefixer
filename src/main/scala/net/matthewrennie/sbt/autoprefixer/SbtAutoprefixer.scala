@@ -72,6 +72,8 @@ object SbtAutoprefixer extends AutoPlugin {
           val sourceMapArgs = if (sourceMap.value) Seq("--map") else Nil
 
           val inlineSourceMapArgs = if (inlineSourceMap.value) Seq("--inline-map") else Nil
+        
+          val browserArgs = Seq("--browsers", "ios 8")
 
           val allArgs = Seq() ++ 
             inputFileArgs ++
