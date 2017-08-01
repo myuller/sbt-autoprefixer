@@ -79,7 +79,8 @@ object SbtAutoprefixer extends AutoPlugin {
             inputFileArgs ++
             cascadeArgs ++
             sourceMapArgs ++
-            inlineSourceMapArgs
+            inlineSourceMapArgs ++
+            browserArgs
 
           SbtJsTask.executeJs(
             state.value,
