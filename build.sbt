@@ -18,6 +18,8 @@ resolvers ++= Seq(
 
 addSbtPlugin("com.typesafe.sbt" %% "sbt-js-engine" % "1.2.2")
 
+dependencyOverrides += "com.typesafe.sbt" % "sbt-web" % "1.4.3"
+
 publishMavenStyle := false
 
 publishTo := {
