@@ -58,6 +58,7 @@ object SbtAutoprefixer extends AutoPlugin {
         buildDir.value
       )
 
+      
       val buildMappings = autoprefixerMappings.map(o => buildDir.value / o._2)
 
       val cacheDirectory = streams.value.cacheDirectory / autoprefixer.key.label
