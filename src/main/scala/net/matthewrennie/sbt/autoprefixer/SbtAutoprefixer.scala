@@ -73,10 +73,10 @@ object SbtAutoprefixer extends AutoPlugin {
           val sourceMapArgs = if (sourceMap.value) Seq("--map") else Nil
 
           val inlineSourceMapArgs = if (inlineSourceMap.value) Seq("--inline-map") else Nil
-        
+
           val browserArgs = Seq("--browsers", "ios 8")
 
-          val allArgs = Seq() ++ 
+          val allArgs = Seq() ++
             inputFileArgs ++
             cascadeArgs ++
             sourceMapArgs ++
@@ -87,16 +87,16 @@ object SbtAutoprefixer extends AutoPlugin {
             state.value,
             (engineType in autoprefixer).value,
             (command in autoprefixer).value,
-            (nodeModuleDirectories in Assets).value.map(_.getPath),            
+            (nodeModuleDirectories in Assets).value.map(_.getPath),
             (nodeModuleDirectories in Assets).value.last / "autoprefixer" / "bin" / "autoprefixer",
             allArgs,
             (timeoutPerSource in autoprefixer).value * autoprefixerMappings.size
           )
 
-          buildDir.value.***.get.filter(!_.isDirectory).toSet
+          buildDir.value.**("*.*").get.filter(!_.isDirectory).toSet
       }
 
-      val autoPrefixedMappings = runUpdate(buildMappings.toSet).pair(relativeTo(buildDir.value))
+      val autoPrefixedMappings = runUpdate(buildMappings.toSet).pair(Path.relativeTo(buildDir.value))
       (mappings.toSet -- autoprefixerMappings ++ autoPrefixedMappings).toSeq
   }
 
